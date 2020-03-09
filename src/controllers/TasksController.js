@@ -27,8 +27,16 @@ const createTask = (req, res) => {
     res.send(newTask)
 }
 
+const updateTask = async (req, res) => {
+    const result = await getConnection().get('tasks').find({
+        id: req.params.id
+    }).assign(req.body).write()
+    res.json(result)
+}
+
 module.exports = {
     getTasks,
     createTask,
-    getTask
+    getTask,
+    updateTask
 }
