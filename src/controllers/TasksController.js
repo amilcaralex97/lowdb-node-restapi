@@ -34,9 +34,17 @@ const updateTask = async (req, res) => {
     res.json(result)
 }
 
+const deleteTask = (req, res) => {
+    const result = getConnection().get('tasks').remove({
+        id: req.params.id
+    }).write()
+    res.json(result)
+}
+
 module.exports = {
     getTasks,
     createTask,
     getTask,
-    updateTask
+    updateTask,
+    deleteTask
 }
